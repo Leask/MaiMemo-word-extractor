@@ -34,14 +34,48 @@ public class TextUtilsTest {
 
     @Test
     public void testFastSplit() throws Exception {
-        String s = "alice in wonderland";
-        FastIntPairArray intPairArray = TextUtils.fastSplit(s, " ");
+        String s1 = "alice in wonderland";
+        String[] s2 = new String[] {
+                "alice", "in", "wonderland"
+        };
+        FastIntPairArray intPairArray = TextUtils.fastSplit(s1, " ");
         assertEquals(3, intPairArray.size());
-        assertEquals(0, intPairArray.getStart(0));
+        for (int i = 0; i < s2.length; i++) {
+            assertEquals(s2[i], s1.substring(intPairArray.getStart(i), intPairArray.getEnd(i)));
+        }
     }
 
     @Test
     public void testFastSplit1() throws Exception {
+        String s1 = "alice-in-wonderland";
+        String[] s2 = new String[] {
+                "alice", "in", "wonderland"
+        };
+        FastIntPairArray intPairArray = TextUtils.fastSplit(s1, "-");
+        assertEquals(3, intPairArray.size());
+        for (int i = 0; i < s2.length; i++) {
+            System.out.println(s2[i] + ", " + s1.substring(intPairArray.getStart(i), intPairArray.getEnd(i)));
+            assertEquals(s2[i], s1.substring(intPairArray.getStart(i), intPairArray.getEnd(i)));
+        }
+    }
 
+    @Test
+    public void testIndexOf() throws Exception {
+        String s = "abcdefg";
+        assertEquals(2, TextUtils.indexOf(s, 'c', 0));
+        assertEquals(2, TextUtils.indexOf(s, 'c', 2));
+        assertEquals(-1, TextUtils.indexOf(s, 'c', 3));
+        assertEquals(-1, TextUtils.indexOf(s, 'z', 4));
+        assertEquals(6, TextUtils.indexOf(s, 'g', 4));
+    }
+
+    @Test
+    public void testIndexOf1() throws Exception {
+        String s = "abcdefg";
+        assertEquals(2, TextUtils.indexOf(s, "cd", 0));
+        assertEquals(2, TextUtils.indexOf(s, "cd", 2));
+        assertEquals(-1, TextUtils.indexOf(s, "cd", 3));
+        assertEquals(-1, TextUtils.indexOf(s, "z", 4));
+        assertEquals(5, TextUtils.indexOf(s, "fg", 4));
     }
 }

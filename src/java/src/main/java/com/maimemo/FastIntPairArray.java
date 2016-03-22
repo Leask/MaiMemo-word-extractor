@@ -31,7 +31,11 @@ public class FastIntPairArray {
 	public int getEnd(int position) {
 		return array[position * 2 + 1];
 	}
-	
+
+	public void clear() {
+		size = 0;
+	}
+
 	public int size() {
 		return size;
 	}

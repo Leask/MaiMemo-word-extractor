@@ -9,14 +9,14 @@ import static org.junit.Assert.assertEquals;
  */
 public class WordIteratorTest {
 
-    WordIterator iterator = new WordIterator("sample test' , someone's coffee-cup walk into bar.");
+    WordIterator iterator = new WordIterator("sample test' , someone's coffee'cup walk into bar.");
 
     @Test
     public void testNextWord() throws Exception {
         SubCharSequence subCharSequence = new SubCharSequence();
 
         String[] s1 = new String[] {
-                "sample", "test'", "someone's", "coffee-cup",
+                "sample", "test'", "someone's", "coffee'cup",
                 "walk", "into", "bar"
         };
         for (int i = 0; i < s1.length && iterator.nextWord(subCharSequence); i++) {
@@ -34,13 +34,18 @@ public class WordIteratorTest {
         }
         assertEquals(iterator.nextWord(subCharSequence), false);
 
-        iterator = new WordIterator("我 not鸡 you speak 咩，please 重复again。");
+        iterator = new WordIterator("我 not鸡 you speak 咩，please 重复again。a");
         String[] s3 = new String[]{
-                "not", "you", "speak", "please", "again"
+                "not", "you", "speak", "please", "again", "a"
         };
         for (int i = 0; i < s3.length && iterator.nextWord(subCharSequence); i++) {
             assertEquals(s3[i], subCharSequence.toString());
         }
         assertEquals(iterator.nextWord(subCharSequence), false);
+
+        iterator = new WordIterator(new CharSequenceWrapper("This is a hyphen-split-test!, hope it work~ awesome!"));
+        while (iterator.nextWord(subCharSequence)) {
+            System.out.print(subCharSequence + ", ");
+        }
     }
 }
