@@ -54,7 +54,6 @@ public class TextUtilsTest {
         FastIntPairArray intPairArray = TextUtils.fastSplit(s1, "-");
         assertEquals(3, intPairArray.size());
         for (int i = 0; i < s2.length; i++) {
-            System.out.println(s2[i] + ", " + s1.substring(intPairArray.getStart(i), intPairArray.getEnd(i)));
             assertEquals(s2[i], s1.substring(intPairArray.getStart(i), intPairArray.getEnd(i)));
         }
     }

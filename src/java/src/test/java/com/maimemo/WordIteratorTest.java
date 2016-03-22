@@ -44,8 +44,11 @@ public class WordIteratorTest {
         assertEquals(iterator.nextWord(subCharSequence), false);
 
         iterator = new WordIterator(new CharSequenceWrapper("This is a hyphen-split-test!, hope it work~ awesome!"));
-        while (iterator.nextWord(subCharSequence)) {
-            System.out.print(subCharSequence + ", ");
+        String[] s4 = new String[] {
+                "This", "is", "a", "hyphen-split-test", "hyphen", "split", "test", "hope", "it", "work", "awesome"
+        };
+        for (int i = 0; i < s4.length && iterator.nextWord(subCharSequence); i++) {
+            assertEquals(s4[i], subCharSequence.toString());
         }
     }
 }

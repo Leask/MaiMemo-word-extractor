@@ -82,7 +82,7 @@ public class WordIterator implements Iterable<CharSequence> {
         currentPos = end + 1;
         outValue.update(text, start, end);
         if (containHyphen) {
-            // cancel research when end char is '-'
+            // cancel research when last char is '-'
             if (text.charAt(end - 1) != '-') {
                 inPlaceSearchStart = start;
                 TextUtils.fastSplit(outValue, '-', inPlaceSearchResult);
