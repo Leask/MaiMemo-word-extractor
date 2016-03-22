@@ -7,11 +7,11 @@ package com.maimemo;
  */
 public class CharSequenceWrapper implements CharSequence {
 
-    private final String source;
+    private final CharSequence source;
     /** cache hash code */
     private int hash = 0;
 
-    public CharSequenceWrapper(String source) {
+    public CharSequenceWrapper(CharSequence source) {
         this.source = source;
     }
 

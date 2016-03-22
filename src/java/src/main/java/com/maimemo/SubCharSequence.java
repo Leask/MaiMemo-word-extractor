@@ -22,6 +22,14 @@ public class SubCharSequence implements CharSequence {
         this.end = end;
     }
 
+    public int getStart() {
+        return start;
+    }
+
+    public int getEnd() {
+        return end;
+    }
+
     public int length() {
         return end - start;
     }
@@ -51,6 +59,29 @@ public class SubCharSequence implements CharSequence {
             }
         }
         return h;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof SubCharSequence) {
+            SubCharSequence sequence = (SubCharSequence) obj;
+            if (sequence.source == source && sequence.start == start && sequence.end == end) {
+                return true;
+            }
+        } else if (obj instanceof CharSequence) {
+            CharSequence sequence = (CharSequence) obj;
+            if (sequence.length() != length()) {
+                return false;
+            }
+            final int length = length();
+            for (int i = 0; i < length; i++) {
+                if (sequence.charAt(i) != charAt(i)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
     public CharSequence subSequence(int start, int end) {

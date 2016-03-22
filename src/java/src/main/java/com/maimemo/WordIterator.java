@@ -69,7 +69,11 @@ public class WordIterator implements Iterable<CharSequence> {
     }
 
     private static boolean isLetter(char c) {
-        return Character.isLetter(c);
+        if ((c > 47 && c < 58) || (c > 64 && c < 91) ||
+                (c > 96 && c < 123) || c == '!' || c == '?') {
+            return true;
+        }
+        return false;
     }
 
     private static boolean isHyhpen(char c) {
