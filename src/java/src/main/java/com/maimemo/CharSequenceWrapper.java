@@ -31,9 +31,14 @@ public class CharSequenceWrapper implements CharSequence {
     public int hashCode() {
         if (hash == 0 && length() > 0) {
             for (int i = 0; i < length(); i++) {
-                hash = 31 * hash + charAt(i);
+                hash = 31 * hash + CharUtils.simpleToLower(charAt(i));
             }
         }
         return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return true;
     }
 }

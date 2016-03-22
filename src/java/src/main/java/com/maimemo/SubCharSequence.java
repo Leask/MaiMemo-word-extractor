@@ -55,7 +55,7 @@ public class SubCharSequence implements CharSequence {
         int h = 0;
         if (length() > 0) {
             for (int i = 0; i < length(); i++) {
-                h = 31 * h + charAt(i);
+                h = 31 * h + CharUtils.simpleToLower(charAt(i));
             }
         }
         return h;
@@ -63,6 +63,9 @@ public class SubCharSequence implements CharSequence {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj instanceof CharSequenceWrapper) {
+            return true;
+        }
         if (obj instanceof SubCharSequence) {
             SubCharSequence sequence = (SubCharSequence) obj;
             if (sequence.source == source && sequence.start == start && sequence.end == end) {
