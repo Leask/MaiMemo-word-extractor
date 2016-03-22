@@ -17,8 +17,6 @@ public class WordIteratorTest {
     public void testNextWord() throws Exception {
         SubCharSequence subCharSequence = new SubCharSequence();
 
-
-
         boolean searched = iterator.nextWord(subCharSequence);
         assertEquals(searched, true);
         assertEquals(subCharSequence.toString(), "sample");
@@ -58,9 +56,9 @@ public class WordIteratorTest {
 
         assertEquals(iterator.nextWord(subCharSequence), false);
 
-        iterator = new WordIterator("我 not鸡 you speak? 咩，please 重复again!。");
+        iterator = new WordIterator("我 not鸡 you speak 咩，please 重复again。");
         while (iterator.nextWord(subCharSequence)) {
-            System.out.println(subCharSequence);
+
         }
     }
 }

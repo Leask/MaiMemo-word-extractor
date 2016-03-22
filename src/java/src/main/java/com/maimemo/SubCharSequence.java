@@ -55,7 +55,7 @@ public class SubCharSequence implements CharSequence {
         int h = 0;
         if (length() > 0) {
             for (int i = 0; i < length(); i++) {
-                h = 31 * h + CharUtils.simpleToLower(charAt(i));
+                h = 31 * h + TextUtils.simpleToLower(charAt(i));
             }
         }
         return h;

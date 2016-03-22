@@ -2,13 +2,13 @@ package com.maimemo;
 
 import org.junit.Test;
 
-import static com.maimemo.CharUtils.simpleToLower;
+import static com.maimemo.TextUtils.simpleToLower;
 import static org.junit.Assert.*;
 
 /**
  * Created by TJT on 3/22/16.
  */
-public class CharUtilsTest {
+public class TextUtilsTest {
 
     static final char[] upperChars = {
             'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
@@ -30,5 +30,18 @@ public class CharUtilsTest {
             assertEquals(simpleToLower(upperChars[i]), lowerChars[i]);
             assertEquals(simpleToLower(lowerChars[i]), lowerChars[i]);
         }
+    }
+
+    @Test
+    public void testFastSplit() throws Exception {
+        String s = "alice in wonderland";
+        FastIntPairArray intPairArray = TextUtils.fastSplit(s, " ");
+        assertEquals(3, intPairArray.size());
+        assertEquals(0, intPairArray.getStart(0));
+    }
+
+    @Test
+    public void testFastSplit1() throws Exception {
+
     }
 }
