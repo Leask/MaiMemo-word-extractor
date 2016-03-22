@@ -1,10 +1,8 @@
 package com.maimemo;
 
-import javafx.scene.SubScene;
-import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by TJT on 3/21/16.
@@ -17,48 +15,32 @@ public class WordIteratorTest {
     public void testNextWord() throws Exception {
         SubCharSequence subCharSequence = new SubCharSequence();
 
-        boolean searched = iterator.nextWord(subCharSequence);
-        assertEquals(searched, true);
-        assertEquals(subCharSequence.toString(), "sample");
-
-        iterator.nextWord(subCharSequence);
-        assertEquals(subCharSequence.toString(), "test'");
-
-        iterator.nextWord(subCharSequence);
-        assertEquals(subCharSequence.toString(), "someone's");
-
-        iterator.nextWord(subCharSequence);
-        assertEquals(subCharSequence.toString(), "coffee-cup");
-
-        iterator.nextWord(subCharSequence);
-        assertEquals(subCharSequence.toString(), "walk");
-
-        iterator.nextWord(subCharSequence);
-        assertEquals(subCharSequence.toString(), "into");
-
-        iterator.nextWord(subCharSequence);
-        assertEquals(subCharSequence.toString(), "bar");
-
+        String[] s1 = new String[] {
+                "sample", "test'", "someone's", "coffee-cup",
+                "walk", "into", "bar"
+        };
+        for (int i = 0; i < s1.length && iterator.nextWord(subCharSequence); i++) {
+            assertEquals(s1[i], subCharSequence.toString());
+        }
         assertEquals(iterator.nextWord(subCharSequence), false);
 
-        iterator = new WordIterator("alice' in worder' ' -- word");
-        iterator.nextWord(subCharSequence);
-        assertEquals(subCharSequence.toString(), "alice'");
 
-        iterator.nextWord(subCharSequence);
-        assertEquals(subCharSequence.toString(), "in");
-
-        iterator.nextWord(subCharSequence);
-        assertEquals(subCharSequence.toString(), "worder'");
-
-        iterator.nextWord(subCharSequence);
-        assertEquals(subCharSequence.toString(), "word");
-
+        iterator = new WordIterator("alice' in wonderland- ' -- word");
+        String[] s2 = new String[] {
+                "alice'", "in", "wonderland-", "word"
+        };
+        for (int i = 0; i < s2.length && iterator.nextWord(subCharSequence); i++) {
+            assertEquals(s2[i], subCharSequence.toString());
+        }
         assertEquals(iterator.nextWord(subCharSequence), false);
 
         iterator = new WordIterator("我 not鸡 you speak 咩，please 重复again。");
-        while (iterator.nextWord(subCharSequence)) {
-
+        String[] s3 = new String[]{
+                "not", "you", "speak", "please", "again"
+        };
+        for (int i = 0; i < s3.length && iterator.nextWord(subCharSequence); i++) {
+            assertEquals(s3[i], subCharSequence.toString());
         }
+        assertEquals(iterator.nextWord(subCharSequence), false);
     }
 }
