@@ -25,10 +25,16 @@ public class FastIntPairArray {
 	}
 	
 	public int getStart(int position) {
+		if (position >= size) {
+			throw new ArrayIndexOutOfBoundsException(size);
+		}
 		return array[position * 2];
 	}
 	
 	public int getEnd(int position) {
+		if (position >= size) {
+			throw new ArrayIndexOutOfBoundsException(size);
+		}
 		return array[position * 2 + 1];
 	}
 

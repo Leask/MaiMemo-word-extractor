@@ -15,7 +15,7 @@ public class SubCharSequence implements CharSequence {
 
     void update(CharSequence source, int start, int end) {
         if (start > end) {
-            throw new IllegalArgumentException("end can't less than start");
+            throw new IllegalArgumentException(String.format("end %d can't less than start %d", end, start));
         }
         this.source = source;
         this.start = start;

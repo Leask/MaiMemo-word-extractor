@@ -17,12 +17,16 @@ public class Extractor {
         buildMap();
     }
 
-    private void buildMap() {
+    public void buildMap() {
         map = new HashMap<CharSequence, Metadata>(library.length);
         for (CharSequence word : library) {
             Metadata metadata = new Metadata();
             metadata.word = word;
             map.put(new CharSequenceWrapper(word), metadata);
+        }
+        Set<CharSequence> set = new HashSet<CharSequence>();
+        for (CharSequence word : library) {
+            set.add(new CharSequenceWrapper(word));
         }
     }
 
@@ -31,13 +35,24 @@ public class Extractor {
         SubCharSequence subCharSequence = new SubCharSequence();
         Set<CharSequence> result = new HashSet<CharSequence>();
         while (wordIterator.nextWord(subCharSequence)) {
-//            map.containsKey(subCharSequence);
             Metadata metadata = map.get(subCharSequence);
             if (metadata != null) {
                 result.add(metadata.word);
             }
         }
-        System.out.println(result.size());
+        WordGroupIterator iterator = new WordGroupIterator();
+        iterator.update(inputText);
+        boolean stopExpand = false;
+        while (iterator.nextWordGroup(stopExpand, subCharSequence)) {
+            Metadata metadata = map.get(subCharSequence);
+            if (metadata != null) {
+                stopExpand = false;
+                result.add(metadata.word);
+            } else {
+                stopExpand = true;
+            }
+        }
+        System.out.println(result);
     }
 
 
