@@ -79,6 +79,15 @@ public class WordIterator implements Iterable<CharSequence> {
             }
         }
 
+        if (end > length) {
+            end = length;
+        }
+
+        while (text.charAt(end - 1) == '-') {
+            end--;
+            containHyphen = false;
+        }
+
         currentPos = end + 1;
         outValue.update(text, start, end);
         if (containHyphen) {

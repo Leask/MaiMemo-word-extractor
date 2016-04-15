@@ -112,4 +112,63 @@ public class TextUtils {
             start = end + 1;
         }
     }
+
+    public static boolean charSeqEquals(CharSequence text1, CharSequence text2) {
+        if (text1.length() != text2.length()) {
+            return false;
+        }
+        int length = text1.length();
+        for (int i = 0; i < length; i++) {
+            if (text1.charAt(i) != text2.charAt(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 搜索单独的单词，即key是 oo，匹配 “oo,” 不匹配 “wood”
+     *
+     * @param charSeq 源字符串
+     * @param key     要搜索的字符串
+     * @param start   开始搜索的偏移量
+     * @return 返回搜索到的关键字在源字符串中的位置，搜索不到返回 -1
+     */
+    public static int standaloneIndexOf(CharSequence charSeq, CharSequence key, int start) {
+        if (key.length() == 0) {
+            return -1;
+        }
+        int keyLen = key.length();
+        int strLen = charSeq.length();
+        if (keyLen == strLen) {
+            return charSeqEquals(charSeq, key) ? 0 : -1;
+        }
+        int pos = start;
+        while (pos + keyLen <= strLen) {
+            pos = indexOf(charSeq, key, pos);
+            if (pos < 0) {
+                return -1;
+            }
+            if (pos == 0) {
+                if ((pos + keyLen < charSeq.length()) && !isLetter(charSeq.charAt(pos + keyLen))) {
+                    return pos;
+                } else {
+                    pos += keyLen;
+                }
+            } else {
+                if (!isLetter(charSeq.charAt(pos - 1)) &&
+                        (pos + keyLen >= strLen ||
+                                !isLetter(charSeq.charAt(pos + keyLen)))) {
+                    return pos;
+                } else {
+                    pos += keyLen;
+                }
+            }
+        }
+        return -1;
+    }
+
+    public static boolean isLetter(char c) {
+        return (c > 47 && c < 58) || (c > 64 && c < 91) || (c > 96 && c < 123 || c == '-');
+    }
 }
