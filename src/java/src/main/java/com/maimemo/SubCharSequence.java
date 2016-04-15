@@ -20,6 +20,9 @@ public class SubCharSequence implements CharSequence {
         this.source = source;
         this.start = start;
         this.end = end;
+        if (end > source.length()) {
+            throw new IndexOutOfBoundsException("fuck");
+        }
     }
 
     public int getStart() {
@@ -47,6 +50,7 @@ public class SubCharSequence implements CharSequence {
         for (int i = 0; i < chars.length; i++) {
             chars[i] = charAt(i);
         }
+
         return new String(chars);
     }
 
@@ -63,22 +67,14 @@ public class SubCharSequence implements CharSequence {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof CharSequenceWrapper) {
-            return true;
-        }
-        if (obj instanceof SubCharSequence) {
-            SubCharSequence sequence = (SubCharSequence) obj;
-            if (sequence.source == source && sequence.start == start && sequence.end == end) {
-                return true;
-            }
-        } else if (obj instanceof CharSequence) {
+        if (obj instanceof CharSequence) {
             CharSequence sequence = (CharSequence) obj;
             if (sequence.length() != length()) {
                 return false;
             }
             final int length = length();
             for (int i = 0; i < length; i++) {
-                if (sequence.charAt(i) != charAt(i)) {
+                if (TextUtils.simpleToLower(sequence.charAt(i)) != TextUtils.simpleToLower(charAt(i))) {
                     return false;
                 }
             }

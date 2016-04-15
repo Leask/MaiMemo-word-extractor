@@ -14,6 +14,7 @@ public class WordGroupIterator {
     private int currentSize = MINIMUM_WORD_GROUP_SIZE;
     private FastIntPairArray splitResult = new FastIntPairArray(3);
     private int size;
+    private int length;
 
     public WordGroupIterator() {
     }
@@ -23,16 +24,17 @@ public class WordGroupIterator {
         currentPos = -1;
         TextUtils.fastSplit(newText, ' ', splitResult);
         size = splitResult.size();
+        length = text.length();
     }
 
     /**
-     * @param stopExpand 是否停止增加词组长度，比如 alice in -> alice in wonderland
+     *
      */
-    public boolean nextWordGroup(boolean stopExpand, SubCharSequence outValue) {
+    public boolean nextWordGroup(SubCharSequence outValue) {
         if (size < 2) {
             return false;
         }
-        if (currentPos + currentSize >= size || stopExpand) {
+        if (currentPos + currentSize >= size || currentSize >= 5) {
             currentSize = MINIMUM_WORD_GROUP_SIZE;
             currentPos++;
         }
@@ -42,7 +44,35 @@ public class WordGroupIterator {
         if (currentPos == -1) {
             currentPos = 0;
         }
-        outValue.update(text, splitResult.getStart(currentPos), splitResult.getEnd(currentPos + currentSize));
+
+        int start = splitResult.getStart(currentPos);
+        int end = splitResult.getEnd(currentPos + currentSize);
+
+        // first char must be a letter
+        char c;
+        for (; start < end; start++) {
+            c = text.charAt(start);
+            if (TextUtils.isLetter(c)) {
+                break;
+            }
+        }
+
+        int i = 0;
+        // last char must be a letter and can't be hyphen
+        while (end > start) {
+            c = text.charAt(end - 1);
+            if (TextUtils.isLetter(c)) {
+                if (i == 0 && c == '-') {
+                    end--;
+                    continue;
+                }
+                break;
+            }
+            i++;
+            end--;
+        }
+
+        outValue.update(text, start, end);
         currentSize++;
         return true;
     }

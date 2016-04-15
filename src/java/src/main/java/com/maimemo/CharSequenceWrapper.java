@@ -2,13 +2,15 @@ package com.maimemo;
 
 /**
  * override {@link #hashCode()}, make sure it same with {@link SubCharSequence#hashCode()}
- *
+ * <p>
  * Created by TJT on 3/22/16.
  */
 public class CharSequenceWrapper implements CharSequence {
 
     private final CharSequence source;
-    /** cache hash code */
+    /**
+     * cache hash code
+     */
     private int hash = 0;
 
     public CharSequenceWrapper(CharSequence source) {
@@ -39,6 +41,24 @@ public class CharSequenceWrapper implements CharSequence {
 
     @Override
     public boolean equals(Object obj) {
-        return true;
+        if (obj instanceof CharSequence) {
+            CharSequence sequence = (CharSequence) obj;
+            if (sequence.length() != length()) {
+                return false;
+            }
+            final int length = length();
+            for (int i = 0; i < length; i++) {
+                if (TextUtils.simpleToLower(sequence.charAt(i)) != TextUtils.simpleToLower(charAt(i))) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return source.toString();
     }
 }
