@@ -1,7 +1,7 @@
 package com.maimemo;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -21,11 +21,15 @@ class PhraseSearchTree {
             "\\bone's\\b|\\bdo sth\\.|\\bsb's\\b|\\bdo sth\\b|" +
             "\\bsb\\.'s\\b|\\bsb\\.|\\bsb\\b|\\bsth\\.|\\bsth\\b|\\.\\.\\.) *", Pattern.CASE_INSENSITIVE);
 
+    private final Matcher matcher = REPLACEMENT_REGEX.matcher("");
+
     private static final int BASE_SIZE = 800;
+
+    private final Node ANY = new Node();
 
     private CharSequence[] library;
 
-    private List<Node> splits = new ArrayList<>(BASE_SIZE);
+    private Node root;
 
     private volatile boolean builded = false;
 
@@ -36,55 +40,106 @@ class PhraseSearchTree {
     }
 
     public void build() {
+        Pattern splitSpace = Pattern.compile(" ");
+        List<Node> splits = new ArrayList<>(BASE_SIZE);
         for (CharSequence s : library) {
             if (TextUtils.indexOf(s, ' ', 0) == -1) {
                 continue;
             }
             for (String pronoun : PRONOUNS) {
                 if (TextUtils.standaloneIndexOf(s, pronoun, 0) != -1) {
+                    System.out.println(s);
                     Node note = new Node();
                     note.word = s;
-                    note.splits = REPLACEMENT_REGEX.split(s);
+                    String[] words = splitSpace.split(s);
+                    CharSequence[] wordsWrapper = new CharSequence[words.length];
+                    for (int i = 0; i < words.length; i++) {
+                        wordsWrapper[i] = new CharSequenceWrapper(words[i]);
+                    }
+                    note.splittedWords = wordsWrapper;
                     splits.add(note);
                     break;
                 }
             }
         }
+
+        root = new Node();
+        root.children = new HashMap<>(BASE_SIZE / 2);
+
+        for (Node node : splits) {
+            addNodeToTree(node);
+        }
+
+        // move any nodes of root node to children of root
+        if (root.any != null) {
+            for (Node node : root.any) {
+                if (node.children != null) {
+                    root.children.putAll(node.children);
+                }
+            }
+        }
+
+        root.any = null;
+
         builded = true;
+    }
+
+    private void addNodeToTree(Node node) {
+        Node parent = root;
+        Node child;
+        for (int i = 0; i < node.splittedWords.length; i++) {
+            child = null;
+            if (parent.children != null) {
+                child = parent.children.get(node.splittedWords[i]);
+            }
+            if (child == null) {
+                if (parent.children == null) {
+                    parent.children = new TreeMap<>();
+                }
+                child = new Node();
+                if (i == node.splittedWords.length - 1) {
+                    matcher.reset(node.splittedWords[i]);
+                    if (matcher.find()) {
+                        // if the last word is any, just ignore it
+                        parent.word = node.word;
+                        break;
+                    }
+                    child.word = node.word;
+                }
+                matcher.reset(node.splittedWords[i]);
+                // is any
+                if (matcher.find()) {
+                    if (parent.any == null) {
+                        parent.any = new ArrayList<>(2);
+                    }
+                    parent.any.add(child);
+                } else {
+                    parent.children.put(node.splittedWords[i], child);
+                }
+            }
+            parent = child;
+        }
     }
 
     public boolean isBuilded() {
         return builded;
     }
 
+    private final SubCharSequence subCharSequence = new SubCharSequence();
+    private final WordIterator wordIterator = new WordIterator();
+
     public CharSequence[] search(CharSequence sentence) {
-        tempResults.clear();
-        int start = 0;
-        boolean searched;
-        for (Node n : splits) {
-            searched = true;
-            start = 0;
-            for (int i = 0; i < n.splits.length; i++) {
-                start = TextUtils.standaloneIndexOf(sentence, n.splits[i], start + 1);
-                if (start == -1) {
-                    searched = false;
-                    break;
-                }
-            }
-            if (searched) {
-                tempResults.add(n.word);
-            }
+        wordIterator.update(sentence);
+        Node node = root;
+        while (wordIterator.nextWord(subCharSequence)) {
         }
-        if (tempResults.size() == 0) {
-            return null;
-        }
-        CharSequence[] array = new CharSequence[tempResults.size()];
-        tempResults.toArray(array);
-        return array;
+        return null;
     }
 
     private class Node {
         public CharSequence word;
-        public String[] splits;
+        public CharSequence[] splittedWords;
+        public List<Node> any;
+        public Map<CharSequence, Node> children;
     }
 }

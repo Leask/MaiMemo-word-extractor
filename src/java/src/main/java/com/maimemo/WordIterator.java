@@ -12,15 +12,27 @@ public class WordIterator implements Iterable<CharSequence> {
     public static final int TYPE_QUOTE = 3;
     public static final int TYPE_BREAK = 4;
 
-    private final CharSequence text;
-    private final int length;
-    private final FastIntPairArray inPlaceSearchResult = new FastIntPairArray(2);
+    private CharSequence text;
+    private int length;
+    private FastIntPairArray inPlaceSearchResult = new FastIntPairArray(2);
     private int inPlaceSearchIndex = 0;
     private int inPlaceSearchStart = 0;
+
+    public WordIterator() {
+
+    }
 
     public WordIterator(CharSequence input) {
         text = input;
         length = text.length();
+    }
+
+    public void update(CharSequence input) {
+        text = input;
+        length = text.length();
+        inPlaceSearchResult.clear();
+        inPlaceSearchIndex = 0;
+        inPlaceSearchStart = 0;
     }
 
     private int currentPos = 0;

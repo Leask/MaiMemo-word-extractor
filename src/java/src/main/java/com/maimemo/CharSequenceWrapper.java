@@ -5,7 +5,9 @@ package com.maimemo;
  * <p>
  * Created by TJT on 3/22/16.
  */
-public class CharSequenceWrapper implements CharSequence {
+public class CharSequenceWrapper implements
+        CharSequence,
+        Comparable<CharSequence> {
 
     private final CharSequence source;
     /**
@@ -60,5 +62,29 @@ public class CharSequenceWrapper implements CharSequence {
     @Override
     public String toString() {
         return source.toString();
+    }
+
+    @Override
+    public int compareTo(CharSequence o) {
+        int n1 = o.length();
+        int n2 = length();
+        int min = Math.min(n1, n2);
+        for (int i = 0; i < min; i++) {
+            char c1 = o.charAt(i);
+            char c2 = charAt(i);
+            if (c1 != c2) {
+                c1 = Character.toUpperCase(c1);
+                c2 = Character.toUpperCase(c2);
+                if (c1 != c2) {
+                    c1 = Character.toLowerCase(c1);
+                    c2 = Character.toLowerCase(c2);
+                    if (c1 != c2) {
+                        // No overflow because of numeric promotion
+                        return c1 - c2;
+                    }
+                }
+            }
+        }
+        return n1 - n2;
     }
 }
