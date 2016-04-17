@@ -40,17 +40,15 @@ public class Extractor {
     public void extract(String inputText) {
         WordIterator wordIterator = new WordIterator(inputText);
         SubCharSequence subCharSequence = new SubCharSequence();
-        Set<CharSequence> result = new HashSet<CharSequence>();
+        Set<Result> result = new HashSet<>();
         while (wordIterator.nextWord(subCharSequence)) {
-            if (TextUtils.charSeqEquals(subCharSequence, "deal")) {
-                System.currentTimeMillis();
-            }
             Metadata metadata = map.get(subCharSequence);
             if (metadata != null) {
                 if (metadata.alternative != null) {
-                    result.add(metadata.alternative);
+                    Result r = new Result(metadata.alternative, subCharSequence.getStart());
+                    result.add(r);
                 }
-                result.add(metadata.word);
+                result.add(new Result(metadata.word, subCharSequence.getStart()));
             }
         }
         PhraseSearchTree searchTree = new PhraseSearchTree(library);
@@ -63,24 +61,60 @@ public class Extractor {
             while (iterator.nextWordGroup(subCharSequence1)) {
                 Metadata metadata = map.get(subCharSequence1);
                 if (metadata != null) {
-                    result.add(metadata.word);
-//                    System.out.println(metadata.word);
+                    result.add(new Result(metadata.word, subCharSequence.getStart() + subCharSequence1.getStart()));
                 }
             }
 
             List<CharSequence> charSequences = searchTree.search(subCharSequence);
             if (charSequences != null) {
                 for (CharSequence s : charSequences) {
-                    result.add(s);
+                    result.add(new Result(s, subCharSequence.getStart()));
                 }
             }
         }
-        System.out.println(result);
+        Result[] r = new Result[result.size()];
+        result.toArray(r);
+        Arrays.sort(r);
     }
 
 
     public static class Metadata {
         public CharSequence word;
         public CharSequence alternative;
+    }
+
+    private static class Result implements Comparable<Result> {
+
+        Result(CharSequence word, int index) {
+            this.word = word;
+            this.index = index;
+        }
+
+        public CharSequence word;
+        public int index;
+
+        @Override
+        public int compareTo(Result o) {
+            return index - o.index;
+        }
+
+        @Override
+        public String toString() {
+            return word + "@" + index;
+        }
+
+        @Override
+        public int hashCode() {
+            return word.hashCode();
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj instanceof Result) {
+                Result result = (Result) obj;
+                return word.equals(result.word);
+            }
+            return false;
+        }
     }
 }
