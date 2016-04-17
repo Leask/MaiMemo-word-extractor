@@ -1,9 +1,6 @@
 package com.maimemo;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * main implement
@@ -71,7 +68,7 @@ public class Extractor {
                 }
             }
 
-            CharSequence[] charSequences = searchTree.search(subCharSequence);
+            List<CharSequence> charSequences = searchTree.search(subCharSequence);
             if (charSequences != null) {
                 for (CharSequence s : charSequences) {
                     result.add(s);

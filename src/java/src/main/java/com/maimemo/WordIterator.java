@@ -14,9 +14,15 @@ public class WordIterator implements Iterable<CharSequence> {
 
     private CharSequence text;
     private int length;
+    private boolean enableSplitHyphen = true;
     private FastIntPairArray inPlaceSearchResult = new FastIntPairArray(2);
     private int inPlaceSearchIndex = 0;
     private int inPlaceSearchStart = 0;
+
+    int start;
+    int end;
+
+    private final SubCharSequence subCharSequence = new SubCharSequence();
 
     public WordIterator() {
 
@@ -27,9 +33,14 @@ public class WordIterator implements Iterable<CharSequence> {
         length = text.length();
     }
 
+    public void setEnableSplitHyphen(boolean enable) {
+        enableSplitHyphen = enable;
+    }
+
     public void update(CharSequence input) {
         text = input;
         length = text.length();
+        currentPos = 0;
         inPlaceSearchResult.clear();
         inPlaceSearchIndex = 0;
         inPlaceSearchStart = 0;
@@ -49,9 +60,24 @@ public class WordIterator implements Iterable<CharSequence> {
     }
 
     public boolean nextWord(SubCharSequence outValue) {
-        if (inPlaceSearchResult.size() > 0) {
-            outValue.update(text, inPlaceSearchStart + inPlaceSearchResult.getStart(inPlaceSearchIndex),
-                    inPlaceSearchStart + inPlaceSearchResult.getEnd(inPlaceSearchIndex));
+        if (nextWord()) {
+            outValue.update(text, start, end);
+            return true;
+        }
+        return false;
+    }
+
+    public void justSplit(FastIntPairArray outValue) {
+        outValue.clear();
+        while (nextWord()) {
+            outValue.add(start, end);
+        }
+    }
+
+    private boolean nextWord() {
+        if (enableSplitHyphen && inPlaceSearchResult.size() > 0) {
+            this.start = inPlaceSearchStart + inPlaceSearchResult.getStart(inPlaceSearchIndex);
+            this.end = inPlaceSearchStart + inPlaceSearchResult.getEnd(inPlaceSearchIndex);
             inPlaceSearchIndex++;
             if (inPlaceSearchIndex >= inPlaceSearchResult.size()) {
                 inPlaceSearchResult.clear();
@@ -95,18 +121,25 @@ public class WordIterator implements Iterable<CharSequence> {
             end = length;
         }
 
+        currentPos = end;
+
         while (text.charAt(end - 1) == '-') {
             end--;
             containHyphen = false;
         }
 
-        currentPos = end + 1;
-        outValue.update(text, start, end);
-        if (containHyphen) {
+        this.start = start;
+        this.end = end;
+
+        if (end <= start) {
+            return false;
+        }
+        if (containHyphen && enableSplitHyphen) {
             // cancel research when last char is '-'
             if (text.charAt(end - 1) != '-') {
                 inPlaceSearchStart = start;
-                TextUtils.fastSplit(outValue, '-', inPlaceSearchResult);
+                subCharSequence.update(text, start, end);
+                TextUtils.fastSplit(subCharSequence, '-', inPlaceSearchResult);
             }
         }
         return true;
