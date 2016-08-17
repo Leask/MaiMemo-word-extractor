@@ -225,7 +225,6 @@ class PhraseSearchTree {
 
     private class Node {
         public List<CharSequence> word;
-        public CharSequence[] splittedWords;
         public List<Node> any;
         public Map<CharSequence, Node> children;
     }
