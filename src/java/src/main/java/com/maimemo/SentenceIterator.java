@@ -14,6 +14,20 @@ class SentenceIterator {
         length = text.length();
     }
 
+    private boolean lookBackward(CharSequence word, int position) {
+        if (position > word.length()) {
+            for (int i = 1; i <= word.length(); i++) {
+                char c1 = TextUtils.simpleToLower(text.charAt(position - i));
+                char c2 = word.charAt(word.length() - i);
+                if (c1 != c2){
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
     public boolean nextSentence(SubCharSequence outValue) {
         if (currentPos >= length - 1) {
             return false;
@@ -26,7 +40,17 @@ class SentenceIterator {
         }
         for (currentPos += 3; currentPos < length; currentPos++) {
             c = text.charAt(currentPos);
-            if (c == ',' || c == '.' || c == '\n' || c == ';') {
+            if (c == ',' || c == '\n' || c == ';') {
+                break;
+            }
+            if (c == '.') {
+                // prevent break sentence when occurred 'sth.', 'sb.', '...'
+                if (currentPos < length -1 && text.charAt(currentPos + 1) == '.') {
+                    continue;
+                }
+                if (lookBackward("sth", currentPos) || lookBackward("sb", currentPos) || lookBackward("..", currentPos)) {
+                    continue;
+                }
                 break;
             }
         }

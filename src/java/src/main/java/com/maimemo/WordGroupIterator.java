@@ -34,7 +34,7 @@ public class WordGroupIterator {
         if (size < 2) {
             return false;
         }
-        if (currentPos + currentSize >= size || currentSize >= 5) {
+        if (currentPos + currentSize >= size || currentSize >= 6) {
             currentSize = MINIMUM_WORD_GROUP_SIZE;
             currentPos++;
         }

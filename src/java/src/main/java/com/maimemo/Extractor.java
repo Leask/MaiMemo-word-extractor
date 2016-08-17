@@ -11,6 +11,7 @@ public class Extractor {
 
     private final CharSequence[] library;
     private Map<CharSequence, Metadata> map;
+    private PhraseSearchTree searchTree;
 
     public Extractor(CharSequence[] library) {
         this.library = library;
@@ -35,9 +36,11 @@ public class Extractor {
         for (CharSequence word : library) {
             set.add(new CharSequenceWrapper(word));
         }
+        searchTree = new PhraseSearchTree(library);
+        searchTree.build();
     }
 
-    public void extract(String inputText) {
+    public Result[] extract(String inputText) {
         WordIterator wordIterator = new WordIterator(inputText);
         SubCharSequence subCharSequence = new SubCharSequence();
         Set<Result> result = new HashSet<>();
@@ -51,8 +54,6 @@ public class Extractor {
                 result.add(new Result(metadata.word, subCharSequence.getStart()));
             }
         }
-        PhraseSearchTree searchTree = new PhraseSearchTree(library);
-        searchTree.build();
         SentenceIterator sentenceIterator = new SentenceIterator(inputText);
         SubCharSequence subCharSequence1 = new SubCharSequence();
         while (sentenceIterator.nextSentence(subCharSequence)) {
@@ -66,6 +67,10 @@ public class Extractor {
             }
 
             List<CharSequence> charSequences = searchTree.search(subCharSequence);
+            Metadata info = map.get(subCharSequence);
+            if (info != null) {
+                result.add(new Result(info.word, subCharSequence.getStart()));
+            }
             if (charSequences != null) {
                 for (CharSequence s : charSequences) {
                     result.add(new Result(s, subCharSequence.getStart()));
@@ -75,6 +80,7 @@ public class Extractor {
         Result[] r = new Result[result.size()];
         result.toArray(r);
         Arrays.sort(r);
+        return r;
     }
 
 
@@ -83,7 +89,7 @@ public class Extractor {
         public CharSequence alternative;
     }
 
-    private static class Result implements Comparable<Result> {
+    public static class Result implements Comparable<Result> {
 
         Result(CharSequence word, int index) {
             this.word = word;
