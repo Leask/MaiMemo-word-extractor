@@ -19,7 +19,8 @@ public class WordIteratorTest {
                 "sample", "test'", "someone's", "coffee'cup",
                 "walk", "into", "bar"
         };
-        for (int i = 0; i < s1.length && iterator.nextWord(subCharSequence); i++) {
+        for (int i = 0; i < s1.length; i++) {
+            iterator.nextWord(subCharSequence);
             assertEquals(s1[i], subCharSequence.toString());
         }
         assertEquals(iterator.nextWord(subCharSequence), false);
@@ -27,9 +28,10 @@ public class WordIteratorTest {
 
         iterator = new WordIterator("alice' in wonderland- ' -- word");
         String[] s2 = new String[] {
-                "alice'", "in", "wonderland-", "word"
+                "alice'", "in", "wonderland", "word"
         };
-        for (int i = 0; i < s2.length && iterator.nextWord(subCharSequence); i++) {
+        for (int i = 0; i < s2.length; i++) {
+            iterator.nextWord(subCharSequence);
             assertEquals(s2[i], subCharSequence.toString());
         }
         assertEquals(iterator.nextWord(subCharSequence), false);
@@ -38,7 +40,8 @@ public class WordIteratorTest {
         String[] s3 = new String[]{
                 "not", "you", "speak", "please", "again", "a"
         };
-        for (int i = 0; i < s3.length && iterator.nextWord(subCharSequence); i++) {
+        for (int i = 0; i < s3.length; i++) {
+            iterator.nextWord(subCharSequence);
             assertEquals(s3[i], subCharSequence.toString());
         }
         assertEquals(iterator.nextWord(subCharSequence), false);

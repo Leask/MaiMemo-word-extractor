@@ -12,21 +12,19 @@ public class WordGroupIterator implements Iterable<SubCharSequence> {
     private static final int MINIMUM_WORD_GROUP_SIZE = 1;
 
     private CharSequence text;
-    private int currentPos = -1;
+    private int currentPos = 0;
     private int currentSize = MINIMUM_WORD_GROUP_SIZE;
     private FastIntPairArray splitResult = new FastIntPairArray(3);
     private int size;
-    private int length;
 
     public WordGroupIterator() {
     }
 
     public void update(CharSequence newText) {
         text = newText;
-        currentPos = -1;
+        currentPos = 0;
         TextUtils.fastSplit(newText, ' ', splitResult);
         size = splitResult.size();
-        length = text.length();
     }
 
     /**
@@ -42,9 +40,6 @@ public class WordGroupIterator implements Iterable<SubCharSequence> {
         }
         if (currentPos == size - 1) {
             return false;
-        }
-        if (currentPos == -1) {
-            currentPos = 0;
         }
 
         int start = splitResult.getStart(currentPos);

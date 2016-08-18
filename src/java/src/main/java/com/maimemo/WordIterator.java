@@ -98,7 +98,7 @@ public class WordIterator implements Iterable<SubCharSequence> {
         }
 
         // beginning is arrived end
-        if (start + 1 == length) {
+        if (start + 1 > length) {
             currentPos = length;
             return false;
         }
