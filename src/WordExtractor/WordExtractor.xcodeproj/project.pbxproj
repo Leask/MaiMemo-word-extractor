@@ -13,17 +13,17 @@
 		7EFCD01B1D647DF100BC8B39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EFCD0191D647DF100BC8B39 /* Main.storyboard */; };
 		7EFCD01D1D647DF100BC8B39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EFCD01C1D647DF100BC8B39 /* Assets.xcassets */; };
 		7EFCD0201D647DF100BC8B39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EFCD01E1D647DF100BC8B39 /* LaunchScreen.storyboard */; };
-		7EFCD02B1D647DF100BC8B39 /* WordExtractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFCD02A1D647DF100BC8B39 /* WordExtractorTests.m */; };
-		7EFCD03B1D64962600BC8B39 /* SubString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFCD03A1D64962600BC8B39 /* SubString.swift */; };
-		7EFCD03C1D64962600BC8B39 /* SubString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFCD03A1D64962600BC8B39 /* SubString.swift */; };
 		7EFCD03F1D6564ED00BC8B39 /* SubString.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFCD03E1D6564ED00BC8B39 /* SubString.m */; };
 		7EFCD0401D6564ED00BC8B39 /* SubString.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFCD03E1D6564ED00BC8B39 /* SubString.m */; };
-		7EFCD0431D656F6100BC8B39 /* TextUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFCD0421D656F6100BC8B39 /* TextUtil.m */; };
-		7EFCD0441D656F6100BC8B39 /* TextUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFCD0421D656F6100BC8B39 /* TextUtil.m */; };
 		7EFCD0461D6571CD00BC8B39 /* SubStringTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFCD0451D6571CD00BC8B39 /* SubStringTest.m */; };
 		7EFCD0491D6583AD00BC8B39 /* StringWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFCD0481D6583AD00BC8B39 /* StringWrapper.m */; };
 		7EFCD04A1D6583AD00BC8B39 /* StringWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFCD0481D6583AD00BC8B39 /* StringWrapper.m */; };
 		7EFCD0501D65886C00BC8B39 /* StringWrapperTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFCD04F1D65886C00BC8B39 /* StringWrapperTest.m */; };
+		7EFCD0531D65990600BC8B39 /* TextUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFCD0521D65990600BC8B39 /* TextUtil.m */; };
+		7EFCD0541D65990600BC8B39 /* TextUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFCD0521D65990600BC8B39 /* TextUtil.m */; };
+		7EFCD0571D659A3A00BC8B39 /* TextIterators.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFCD0561D659A3A00BC8B39 /* TextIterators.m */; };
+		7EFCD0581D659A3A00BC8B39 /* TextIterators.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFCD0561D659A3A00BC8B39 /* TextIterators.m */; };
+		7EFCD05A1D65AA3800BC8B39 /* TextIteratorsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFCD0591D65AA3800BC8B39 /* TextIteratorsTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,17 +48,18 @@
 		7EFCD01F1D647DF100BC8B39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7EFCD0211D647DF100BC8B39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7EFCD0261D647DF100BC8B39 /* WordExtractorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WordExtractorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7EFCD02A1D647DF100BC8B39 /* WordExtractorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordExtractorTests.m; sourceTree = "<group>"; };
 		7EFCD02C1D647DF100BC8B39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7EFCD03A1D64962600BC8B39 /* SubString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubString.swift; sourceTree = "<group>"; };
 		7EFCD03D1D6564ED00BC8B39 /* SubString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubString.h; sourceTree = "<group>"; };
 		7EFCD03E1D6564ED00BC8B39 /* SubString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubString.m; sourceTree = "<group>"; };
-		7EFCD0411D656F6100BC8B39 /* TextUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextUtil.h; sourceTree = "<group>"; };
-		7EFCD0421D656F6100BC8B39 /* TextUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextUtil.m; sourceTree = "<group>"; };
 		7EFCD0451D6571CD00BC8B39 /* SubStringTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SubStringTest.m; path = ../WordExtractor/SubStringTest.m; sourceTree = "<group>"; };
 		7EFCD0471D6583AD00BC8B39 /* StringWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringWrapper.h; sourceTree = "<group>"; };
 		7EFCD0481D6583AD00BC8B39 /* StringWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringWrapper.m; sourceTree = "<group>"; };
 		7EFCD04F1D65886C00BC8B39 /* StringWrapperTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StringWrapperTest.m; path = ../StringWrapperTest.m; sourceTree = "<group>"; };
+		7EFCD0511D65990600BC8B39 /* TextUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextUtil.h; sourceTree = "<group>"; };
+		7EFCD0521D65990600BC8B39 /* TextUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextUtil.m; sourceTree = "<group>"; };
+		7EFCD0551D659A3A00BC8B39 /* TextIterators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextIterators.h; sourceTree = "<group>"; };
+		7EFCD0561D659A3A00BC8B39 /* TextIterators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextIterators.m; sourceTree = "<group>"; };
+		7EFCD0591D65AA3800BC8B39 /* TextIteratorsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextIteratorsTest.m; path = ../WordExtractor/TextIteratorsTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,13 +110,14 @@
 				7EFCD01E1D647DF100BC8B39 /* LaunchScreen.storyboard */,
 				7EFCD0211D647DF100BC8B39 /* Info.plist */,
 				7EFCD0101D647DF100BC8B39 /* Supporting Files */,
-				7EFCD03A1D64962600BC8B39 /* SubString.swift */,
 				7EFCD03D1D6564ED00BC8B39 /* SubString.h */,
 				7EFCD03E1D6564ED00BC8B39 /* SubString.m */,
-				7EFCD0411D656F6100BC8B39 /* TextUtil.h */,
-				7EFCD0421D656F6100BC8B39 /* TextUtil.m */,
+				7EFCD0511D65990600BC8B39 /* TextUtil.h */,
+				7EFCD0521D65990600BC8B39 /* TextUtil.m */,
 				7EFCD0471D6583AD00BC8B39 /* StringWrapper.h */,
 				7EFCD0481D6583AD00BC8B39 /* StringWrapper.m */,
+				7EFCD0551D659A3A00BC8B39 /* TextIterators.h */,
+				7EFCD0561D659A3A00BC8B39 /* TextIterators.m */,
 			);
 			path = WordExtractor;
 			sourceTree = "<group>";
@@ -131,9 +133,9 @@
 		7EFCD0291D647DF100BC8B39 /* WordExtractorTests */ = {
 			isa = PBXGroup;
 			children = (
+				7EFCD0591D65AA3800BC8B39 /* TextIteratorsTest.m */,
 				7EFCD04F1D65886C00BC8B39 /* StringWrapperTest.m */,
 				7EFCD0451D6571CD00BC8B39 /* SubStringTest.m */,
-				7EFCD02A1D647DF100BC8B39 /* WordExtractorTests.m */,
 				7EFCD02C1D647DF100BC8B39 /* Info.plist */,
 			);
 			path = WordExtractorTests;
@@ -242,8 +244,8 @@
 				7EFCD0181D647DF100BC8B39 /* ViewController.m in Sources */,
 				7EFCD0151D647DF100BC8B39 /* AppDelegate.m in Sources */,
 				7EFCD0491D6583AD00BC8B39 /* StringWrapper.m in Sources */,
-				7EFCD03B1D64962600BC8B39 /* SubString.swift in Sources */,
-				7EFCD0431D656F6100BC8B39 /* TextUtil.m in Sources */,
+				7EFCD0571D659A3A00BC8B39 /* TextIterators.m in Sources */,
+				7EFCD0531D65990600BC8B39 /* TextUtil.m in Sources */,
 				7EFCD0121D647DF100BC8B39 /* main.m in Sources */,
 				7EFCD03F1D6564ED00BC8B39 /* SubString.m in Sources */,
 			);
@@ -255,9 +257,9 @@
 			files = (
 				7EFCD0461D6571CD00BC8B39 /* SubStringTest.m in Sources */,
 				7EFCD04A1D6583AD00BC8B39 /* StringWrapper.m in Sources */,
-				7EFCD0441D656F6100BC8B39 /* TextUtil.m in Sources */,
-				7EFCD03C1D64962600BC8B39 /* SubString.swift in Sources */,
-				7EFCD02B1D647DF100BC8B39 /* WordExtractorTests.m in Sources */,
+				7EFCD05A1D65AA3800BC8B39 /* TextIteratorsTest.m in Sources */,
+				7EFCD0581D659A3A00BC8B39 /* TextIterators.m in Sources */,
+				7EFCD0541D65990600BC8B39 /* TextUtil.m in Sources */,
 				7EFCD0501D65886C00BC8B39 /* StringWrapperTest.m in Sources */,
 				7EFCD0401D6564ED00BC8B39 /* SubString.m in Sources */,
 			);
@@ -384,7 +386,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.maimemo.text.WordExtractor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "WordExtractor/WordExtractor-Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				"SWIFT_OBJC_INTERFACE_HEADER_NAME[arch=*]" = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -398,7 +401,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.maimemo.text.WordExtractor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "WordExtractor/WordExtractor-Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 			};
 			name = Release;
 		};
