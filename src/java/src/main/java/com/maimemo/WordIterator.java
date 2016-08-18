@@ -5,7 +5,7 @@ import java.util.Iterator;
 /**
  * Created by TJT on 3/21/16.
  */
-public class WordIterator implements Iterable<CharSequence> {
+public class WordIterator implements Iterable<SubCharSequence> {
 
     public static final int TYPE_LETTER = 1;
     public static final int TYPE_HYPHEN = 2;
@@ -149,17 +149,16 @@ public class WordIterator implements Iterable<CharSequence> {
         return (c > 47 && c < 58) || (c > 64 && c < 91) || (c > 96 && c < 123);
     }
 
-    public Iterator<CharSequence> iterator() {
-        return new Iterator<CharSequence>() {
+    public Iterator<SubCharSequence> iterator() {
+        return new Iterator<SubCharSequence>() {
 
             private SubCharSequence seq = new SubCharSequence();
 
             public boolean hasNext() {
-                return currentPos >= text.length();
+                return nextWord(seq);
             }
 
-            public CharSequence next() {
-                nextWord(seq);
+            public SubCharSequence next() {
                 return seq;
             }
         };

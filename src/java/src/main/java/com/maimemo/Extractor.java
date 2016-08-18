@@ -42,38 +42,36 @@ public class Extractor {
 
     public Result[] extract(String inputText) {
         WordIterator wordIterator = new WordIterator(inputText);
-        SubCharSequence subCharSequence = new SubCharSequence();
         Set<Result> result = new HashSet<>();
-        while (wordIterator.nextWord(subCharSequence)) {
-            Metadata metadata = map.get(subCharSequence);
+        for (SubCharSequence word : wordIterator) {
+            Metadata metadata = map.get(word);
             if (metadata != null) {
                 if (metadata.alternative != null) {
-                    Result r = new Result(metadata.alternative, subCharSequence.getStart());
+                    Result r = new Result(metadata.alternative, word.getStart());
                     result.add(r);
                 }
-                result.add(new Result(metadata.word, subCharSequence.getStart()));
+                result.add(new Result(metadata.word, word.getStart()));
             }
         }
         SentenceIterator sentenceIterator = new SentenceIterator(inputText);
-        SubCharSequence subCharSequence1 = new SubCharSequence();
-        while (sentenceIterator.nextSentence(subCharSequence)) {
+        for (SubCharSequence sentence : sentenceIterator) {
             WordGroupIterator iterator = new WordGroupIterator();
-            iterator.update(subCharSequence);
-            while (iterator.nextWordGroup(subCharSequence1)) {
-                Metadata metadata = map.get(subCharSequence1);
+            iterator.update(sentence);
+            for (SubCharSequence wordGroup : iterator) {
+                Metadata metadata = map.get(wordGroup);
                 if (metadata != null) {
-                    result.add(new Result(metadata.word, subCharSequence.getStart() + subCharSequence1.getStart()));
+                    result.add(new Result(metadata.word, sentence.getStart() + wordGroup.getStart()));
                 }
             }
 
-            List<CharSequence> charSequences = searchTree.search(subCharSequence);
-            Metadata info = map.get(subCharSequence);
+            List<CharSequence> charSequences = searchTree.search(sentence);
+            Metadata info = map.get(sentence);
             if (info != null) {
-                result.add(new Result(info.word, subCharSequence.getStart()));
+                result.add(new Result(info.word, sentence.getStart()));
             }
             if (charSequences != null) {
                 for (CharSequence s : charSequences) {
-                    result.add(new Result(s, subCharSequence.getStart()));
+                    result.add(new Result(s, sentence.getStart()));
                 }
             }
         }
@@ -84,20 +82,20 @@ public class Extractor {
     }
 
 
-    public static class Metadata {
-        public CharSequence word;
-        public CharSequence alternative;
+    private static class Metadata {
+        CharSequence word;
+        CharSequence alternative;
     }
 
-    public static class Result implements Comparable<Result> {
+    static class Result implements Comparable<Result> {
 
         Result(CharSequence word, int index) {
             this.word = word;
             this.index = index;
         }
 
-        public CharSequence word;
-        public int index;
+        CharSequence word;
+        int index;
 
         @Override
         public int compareTo(Result o) {

@@ -1,9 +1,11 @@
 package com.maimemo;
 
+import java.util.Iterator;
+
 /**
  * Created by TJT on 4/13/16.
  */
-class SentenceIterator {
+class SentenceIterator implements Iterable<SubCharSequence> {
 
     private int currentPos = 0;
     private int length;
@@ -56,5 +58,23 @@ class SentenceIterator {
         }
         outValue.update(text, start, currentPos);
         return true;
+    }
+
+    @Override
+    public Iterator<SubCharSequence> iterator() {
+        return new Iterator<SubCharSequence>() {
+
+            SubCharSequence subCharSequence = new SubCharSequence();
+
+            @Override
+            public boolean hasNext() {
+                return nextSentence(subCharSequence);
+            }
+
+            @Override
+            public SubCharSequence next() {
+                return subCharSequence;
+            }
+        };
     }
 }

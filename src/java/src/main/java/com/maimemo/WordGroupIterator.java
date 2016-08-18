@@ -1,11 +1,13 @@
 package com.maimemo;
 
+import java.util.Iterator;
+
 /**
  * 遍历所有词组
  * <p/>
  * Created by TJT on 3/21/16.
  */
-public class WordGroupIterator {
+public class WordGroupIterator implements Iterable<SubCharSequence> {
 
     private static final int MINIMUM_WORD_GROUP_SIZE = 1;
 
@@ -77,4 +79,21 @@ public class WordGroupIterator {
         return true;
     }
 
+    @Override
+    public Iterator<SubCharSequence> iterator() {
+        return new Iterator<SubCharSequence>() {
+
+            SubCharSequence subCharSequence = new SubCharSequence();
+
+            @Override
+            public boolean hasNext() {
+                return nextWordGroup(subCharSequence);
+            }
+
+            @Override
+            public SubCharSequence next() {
+                return subCharSequence;
+            }
+        };
+    }
 }
