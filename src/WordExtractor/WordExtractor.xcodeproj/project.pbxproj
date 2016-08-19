@@ -24,6 +24,8 @@
 		7EFCD0571D659A3A00BC8B39 /* TextIterators.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFCD0561D659A3A00BC8B39 /* TextIterators.m */; };
 		7EFCD0581D659A3A00BC8B39 /* TextIterators.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFCD0561D659A3A00BC8B39 /* TextIterators.m */; };
 		7EFCD05A1D65AA3800BC8B39 /* TextIteratorsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFCD0591D65AA3800BC8B39 /* TextIteratorsTest.m */; };
+		7EFCD0611D67367B00BC8B39 /* PhraseSearchTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFCD0601D67367B00BC8B39 /* PhraseSearchTree.m */; };
+		7EFCD0621D67367B00BC8B39 /* PhraseSearchTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFCD0601D67367B00BC8B39 /* PhraseSearchTree.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,8 @@
 		7EFCD0551D659A3A00BC8B39 /* TextIterators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextIterators.h; sourceTree = "<group>"; };
 		7EFCD0561D659A3A00BC8B39 /* TextIterators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextIterators.m; sourceTree = "<group>"; };
 		7EFCD0591D65AA3800BC8B39 /* TextIteratorsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextIteratorsTest.m; path = ../WordExtractor/TextIteratorsTest.m; sourceTree = "<group>"; };
+		7EFCD05F1D67367B00BC8B39 /* PhraseSearchTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhraseSearchTree.h; sourceTree = "<group>"; };
+		7EFCD0601D67367B00BC8B39 /* PhraseSearchTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhraseSearchTree.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +122,8 @@
 				7EFCD0481D6583AD00BC8B39 /* StringWrapper.m */,
 				7EFCD0551D659A3A00BC8B39 /* TextIterators.h */,
 				7EFCD0561D659A3A00BC8B39 /* TextIterators.m */,
+				7EFCD05F1D67367B00BC8B39 /* PhraseSearchTree.h */,
+				7EFCD0601D67367B00BC8B39 /* PhraseSearchTree.m */,
 			);
 			path = WordExtractor;
 			sourceTree = "<group>";
@@ -247,6 +253,7 @@
 				7EFCD0571D659A3A00BC8B39 /* TextIterators.m in Sources */,
 				7EFCD0531D65990600BC8B39 /* TextUtil.m in Sources */,
 				7EFCD0121D647DF100BC8B39 /* main.m in Sources */,
+				7EFCD0611D67367B00BC8B39 /* PhraseSearchTree.m in Sources */,
 				7EFCD03F1D6564ED00BC8B39 /* SubString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -261,6 +268,7 @@
 				7EFCD0581D659A3A00BC8B39 /* TextIterators.m in Sources */,
 				7EFCD0541D65990600BC8B39 /* TextUtil.m in Sources */,
 				7EFCD0501D65886C00BC8B39 /* StringWrapperTest.m in Sources */,
+				7EFCD0621D67367B00BC8B39 /* PhraseSearchTree.m in Sources */,
 				7EFCD0401D6564ED00BC8B39 /* SubString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -453,6 +461,7 @@
 				7EFCD0311D647DF100BC8B39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7EFCD0321D647DF100BC8B39 /* Build configuration list for PBXNativeTarget "WordExtractorTests" */ = {
 			isa = XCConfigurationList;
@@ -461,6 +470,7 @@
 				7EFCD0341D647DF100BC8B39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

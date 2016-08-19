@@ -68,4 +68,17 @@
     return _hashCache;
 }
 
+- (id)copyWithZone:(NSZone *)zone {
+    StringWrapper *copy = [[[self class] alloc] init];
+    if (copy) {
+        copy.source = self.source;
+    }
+    
+    return copy;
+}
+
+- (NSString *)description {
+    return _source;
+}
+
 @end
