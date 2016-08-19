@@ -43,11 +43,10 @@ class PhraseSearchTree {
 
         @Override
         public int hashCode() {
-            int h = hash;
-            if (h != 0 && array.size() > 0) {
+            if (hash != 0 && array.size() > 0) {
                 for (CharSequence s : array) {
                     for (int i = 0; i < s.length(); i++) {
-                        h = 31 * h + s.charAt(i);
+                        hash = 31 * hash + s.charAt(i);
                     }
                 }
             }
