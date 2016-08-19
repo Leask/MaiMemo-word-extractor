@@ -233,3 +233,67 @@
 }
 
 @end
+
+
+@interface SentenceIterator ()
+
+@property (nonatomic, assign) NSInteger currentPos;
+@property (nonatomic, assign) NSInteger length;
+@property (nonatomic, strong) NSString  *text;
+
+@end
+
+@implementation SentenceIterator
+
+- (void)update:(NSString *)text {
+    _text = text;
+    _length = _text.length;
+    _currentPos = 0;
+}
+
+- (BOOL)lookBackward:(NSString *)word position:(NSInteger)pos {
+    NSUInteger wordLen = word.length;
+    if (pos > word.length) {
+        for (NSInteger i = 1; i <= wordLen; i++) {
+            unichar c1 = [TextUtil simpleToLower:[_text characterAtIndex:pos - i]];
+            unichar c2 = [word characterAtIndex:wordLen - i];
+            if (c1 != c2) {
+                return NO;
+            }
+        }
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)nextSentence:(SubString *)outValue {
+    if (_currentPos >= _length - 1) {
+        return NO;
+    }
+    
+    NSInteger start = _currentPos;
+    if (_currentPos > 0) {
+        start++;
+    }
+    unichar c;
+    for (_currentPos += 3; _currentPos < _length; _currentPos++) {
+        c = [_text characterAtIndex:_currentPos];
+        if (c == ',' || c == '\n' || c == ';') {
+            break;
+        }
+        if (c == '.') {
+            // prevent break sentence when occured 'sth.', 'sb.', '...'
+            if (_currentPos < _length - 1 && [_text characterAtIndex:_currentPos + 1] == '.') {
+                continue;
+            }
+            if ([self lookBackward:@"sth" position:_currentPos] || [self lookBackward:@"sb" position:_currentPos] || [self lookBackward:@".." position:_currentPos]) {
+                continue;
+            }
+            break;
+        }
+    }
+    [outValue updateWithString:_text start:start end:_currentPos];
+    return YES;
+}
+
+@end

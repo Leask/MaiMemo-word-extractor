@@ -93,4 +93,13 @@
     XCTAssertFalse([iterator nextWordGroup:subStr]);
 }
 
+- (void)testSentenceIterator {
+    SentenceIterator *iterator = [SentenceIterator new];
+    [iterator update:@"adorn\nadorn sb. with sth.\nadorn sth. with sth.\nadrenal\nadrenal cortex"];
+    SubString *str = [SubString new];
+    while ([iterator nextSentence:str]) {
+        NSLog(@">>>>> %@", str);
+    }
+}
+
 @end
