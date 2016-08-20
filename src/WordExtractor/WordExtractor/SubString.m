@@ -78,6 +78,15 @@
     return NO;
 }
 
+- (id)copyWithZone:(NSZone *)zone {
+    SubString *copy = [[[self class] alloc] init];
+    if (copy) {
+        [copy updateWithString:_source start:_start end:_end];
+        copy.hashCache = _hashCache;
+    }
+    return copy;
+}
+
 - (NSString *)description {
     return [_source substringWithRange:NSMakeRange(_start, _end - _start)];
 }

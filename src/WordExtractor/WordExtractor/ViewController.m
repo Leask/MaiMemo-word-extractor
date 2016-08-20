@@ -11,6 +11,7 @@
 #import "TextIterators.h"
 #import "PhraseSearchTree.h"
 #import "StringWrapper.h"
+#import "WordExtractor.h"
 
 @interface ViewController ()
 
@@ -20,23 +21,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //    SubString *subStr = [SubString new];
-    //    [subStr updateWithString:@"hello world" start:0 end:6];
-    //    SubString *subStr1 = [SubString new];
-    //    [subStr1 updateWithString:@"hello johy" start:0 end:6];
-    //    NSMutableSet *set = [NSMutableSet new];
-    //    [set addObject:subStr];
-    //    if ([set containsObject:subStr1]) {
-    //        NSLog(@"%@", @"contains");
-    //    } else {
-    //        NSLog(@"%@, %lu, %lu", @"not contains", subStr.hash, subStr1.hash);
-    //    }
     NSString *s = [NSString stringWithContentsOfFile:@"/Users/TJT/all_vocs.txt" encoding:NSUTF8StringEncoding error:nil];
-    
-    //    NSArray *arr = [@"pick ... up\npick apples\npick at\npick fruit\npick on\npick on sb.\npick out\npick sb. out\npick sb. up\npick sth. out\npick sth. up\npick up\npick up leaves" componentsSeparatedByString:@"\n"];
-    PhraseSearchTree *tree = [[PhraseSearchTree alloc] initWithLibrary:[s componentsSeparatedByString:@"\n"]];
-    [tree build];
-    NSLog(@"%@", [tree search:@"pick sth. up"]);
+    NSString *text = [NSString stringWithContentsOfFile:@"/Users/TJT/alice30.txt" encoding:NSUTF8StringEncoding error:nil];
+    NSArray<NSString *> *library = [s componentsSeparatedByString:@"\n"];
+    WordExtractor *extractor = [[WordExtractor alloc] initWithLibrary:library];
+    [extractor buildIndex];
+    NSArray *arr = [extractor extract:text];
+    for (Result *r in arr) {
+        NSLog(@"%@", r.word);
+    }
     // Do any additional setup after loading the view, typically from a nib.
 }
 
