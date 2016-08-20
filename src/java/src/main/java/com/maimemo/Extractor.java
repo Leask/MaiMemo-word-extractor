@@ -32,10 +32,6 @@ public class Extractor {
             metadata.word = word;
             map.put(wrapper, metadata);
         }
-        Set<CharSequence> set = new HashSet<CharSequence>();
-        for (CharSequence word : library) {
-            set.add(new CharSequenceWrapper(word));
-        }
         searchTree = new PhraseSearchTree(library);
         searchTree.build();
     }
