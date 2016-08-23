@@ -111,4 +111,27 @@
     XCTAssertEqual('o', [str characterAtIndex:4]);
 }
 
+- (void)testSubString1 {
+    NSString *source = @"Hello world";
+    SubString *sub = [SubString new];
+    [sub updateWithString:source start:0 end:source.length];
+    XCTAssertEqualObjects([source substringToIndex:4], [sub substringToIndex:4]);
+    XCTAssertEqualObjects([source substringFromIndex:4], [sub substringFromIndex:4]);
+    XCTAssertEqualObjects([source substringWithRange:NSMakeRange(2, 4)], [sub substringWithRange:NSMakeRange(2, 4)]);
+    [sub updateWithString:source start:6 end:source.length];
+    XCTAssertEqualObjects(@"rld", [sub substringFromIndex:2]);
+    XCTAssertEqualObjects(@"wor", [sub substringToIndex:3]);
+    XCTAssertEqualObjects(@"orl", [sub substringWithRange:NSMakeRange(1, 3)]);
+}
+
+- (void)testPrefixSuffix {
+    NSString *source = @"Hello world";
+    SubString *sub = [SubString new];
+    [sub updateWithString:source start:6 end:source.length];
+    XCTAssertEqual(YES, [sub hasPrefix:@"wor"]);
+    XCTAssertEqual(NO, [sub hasPrefix:@"or"]);
+    XCTAssertEqual(YES, [sub hasSuffix:@"rld"]);
+    XCTAssertEqual(NO, [sub hasSuffix:@"rl"]);
+}
+
 @end

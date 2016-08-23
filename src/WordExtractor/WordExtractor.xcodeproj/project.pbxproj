@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E679F821D6BFCC4004B21D6 /* WordExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E679F801D6BFCC4004B21D6 /* WordExtractor.m */; };
+		7E679F841D6BFCED004B21D6 /* WordExtractorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E679F811D6BFCC4004B21D6 /* WordExtractorTest.m */; };
 		7EFCD0121D647DF100BC8B39 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFCD0111D647DF100BC8B39 /* main.m */; };
 		7EFCD0151D647DF100BC8B39 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFCD0141D647DF100BC8B39 /* AppDelegate.m */; };
 		7EFCD0181D647DF100BC8B39 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFCD0171D647DF100BC8B39 /* ViewController.m */; };
@@ -39,6 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E679F7F1D6BFCC4004B21D6 /* WordExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordExtractor.h; sourceTree = "<group>"; };
+		7E679F801D6BFCC4004B21D6 /* WordExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordExtractor.m; sourceTree = "<group>"; };
+		7E679F811D6BFCC4004B21D6 /* WordExtractorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WordExtractorTest.m; path = ../WordExtractor/WordExtractorTest.m; sourceTree = "<group>"; };
 		7EFCD00D1D647DF100BC8B39 /* WordExtractor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordExtractor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EFCD0111D647DF100BC8B39 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7EFCD0131D647DF100BC8B39 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -105,6 +110,8 @@
 		7EFCD00F1D647DF100BC8B39 /* WordExtractor */ = {
 			isa = PBXGroup;
 			children = (
+				7E679F7F1D6BFCC4004B21D6 /* WordExtractor.h */,
+				7E679F801D6BFCC4004B21D6 /* WordExtractor.m */,
 				7EFCD0131D647DF100BC8B39 /* AppDelegate.h */,
 				7EFCD0141D647DF100BC8B39 /* AppDelegate.m */,
 				7EFCD0161D647DF100BC8B39 /* ViewController.h */,
@@ -139,6 +146,7 @@
 		7EFCD0291D647DF100BC8B39 /* WordExtractorTests */ = {
 			isa = PBXGroup;
 			children = (
+				7E679F811D6BFCC4004B21D6 /* WordExtractorTest.m */,
 				7EFCD0591D65AA3800BC8B39 /* TextIteratorsTest.m */,
 				7EFCD04F1D65886C00BC8B39 /* StringWrapperTest.m */,
 				7EFCD0451D6571CD00BC8B39 /* SubStringTest.m */,
@@ -247,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E679F821D6BFCC4004B21D6 /* WordExtractor.m in Sources */,
 				7EFCD0181D647DF100BC8B39 /* ViewController.m in Sources */,
 				7EFCD0151D647DF100BC8B39 /* AppDelegate.m in Sources */,
 				7EFCD0491D6583AD00BC8B39 /* StringWrapper.m in Sources */,
@@ -265,6 +274,7 @@
 				7EFCD0461D6571CD00BC8B39 /* SubStringTest.m in Sources */,
 				7EFCD04A1D6583AD00BC8B39 /* StringWrapper.m in Sources */,
 				7EFCD05A1D65AA3800BC8B39 /* TextIteratorsTest.m in Sources */,
+				7E679F841D6BFCED004B21D6 /* WordExtractorTest.m in Sources */,
 				7EFCD0581D659A3A00BC8B39 /* TextIterators.m in Sources */,
 				7EFCD0541D65990600BC8B39 /* TextUtil.m in Sources */,
 				7EFCD0501D65886C00BC8B39 /* StringWrapperTest.m in Sources */,

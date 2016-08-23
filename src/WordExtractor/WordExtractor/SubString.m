@@ -60,6 +60,43 @@
     return [_source characterAtIndex:_start + index];
 }
 
+- (BOOL)hasPrefix:(NSString *)str {
+    if (str.length > self.length) {
+        return NO;
+    }
+    for (NSInteger i = 0; i < str.length; i++) {
+        if ([str characterAtIndex:i] != [self characterAtIndex:i]) {
+            return NO;
+        }
+    }
+    return true;
+}
+
+- (BOOL) hasSuffix:(NSString *)str {
+    if (str.length > self.length) {
+        return NO;
+    }
+    for (NSInteger i = 1; i <= str.length; i++) {
+        if ([str characterAtIndex:str.length - i] != [self characterAtIndex:self.length - i]) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
+- (NSString *)substringFromIndex:(NSUInteger)from {
+    return [_source substringWithRange:NSMakeRange(_start + from, self.length - from)];
+}
+
+- (NSString *)substringToIndex:(NSUInteger)to {
+    return [_source substringWithRange:NSMakeRange(_start, to)];
+}
+
+- (NSString *)substringWithRange:(NSRange)range {
+    return [_source substringWithRange:NSMakeRange(range.location + _start, range.length)];
+}
+
+
 - (BOOL)isEqual:(id)object {
     if (object == self) {
         return YES;
