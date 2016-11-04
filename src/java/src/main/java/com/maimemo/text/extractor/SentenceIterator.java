@@ -1,4 +1,7 @@
-package com.maimemo;
+package com.maimemo.text.extractor;
+
+import com.maimemo.text.SubCharSequence;
+import com.maimemo.text.TextUtils;
 
 import java.util.Iterator;
 
@@ -56,6 +59,9 @@ class SentenceIterator implements Iterable<SubCharSequence> {
                 break;
             }
         }
+        if (currentPos >= length) {
+            currentPos = length -1;
+        }
         outValue.update(text, start, currentPos);
         return true;
     }
@@ -74,6 +80,11 @@ class SentenceIterator implements Iterable<SubCharSequence> {
             @Override
             public SubCharSequence next() {
                 return subCharSequence;
+            }
+
+            @Override
+            public void remove() {
+
             }
         };
     }

@@ -1,4 +1,4 @@
-package com.maimemo;
+package com.maimemo.text;
 
 import org.junit.Test;
 

@@ -1,4 +1,8 @@
-package com.maimemo;
+package com.maimemo.text.extractor;
+
+import com.maimemo.text.FastIntPairArray;
+import com.maimemo.text.SubCharSequence;
+import com.maimemo.text.TextUtils;
 
 import java.util.Iterator;
 
@@ -160,6 +164,11 @@ public class WordIterator implements Iterable<SubCharSequence> {
 
             public SubCharSequence next() {
                 return seq;
+            }
+
+            @Override
+            public void remove() {
+
             }
         };
     }

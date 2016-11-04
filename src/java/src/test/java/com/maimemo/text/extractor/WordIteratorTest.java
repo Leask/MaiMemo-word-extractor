@@ -1,5 +1,7 @@
-package com.maimemo;
+package com.maimemo.text.extractor;
 
+import com.maimemo.text.SubCharSequence;
+import com.maimemo.text.extractor.WordIterator;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -46,7 +48,7 @@ public class WordIteratorTest {
         }
         assertEquals(iterator.nextWord(subCharSequence), false);
 
-        iterator = new WordIterator(new CharSequenceWrapper("This is a hyphen-split-test!, hope it work~ awesome!"));
+        iterator = new WordIterator(new SubCharSequence("This is a hyphen-split-test!, hope it work~ awesome!"));
         String[] s4 = new String[] {
                 "This", "is", "a", "hyphen-split-test", "hyphen", "split", "test", "hope", "it", "work", "awesome"
         };

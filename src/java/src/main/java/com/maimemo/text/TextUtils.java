@@ -1,6 +1,8 @@
-package com.maimemo;
+package com.maimemo.text;
+
 
 /**
+ * Text Utils
  * Created by TJT on 3/22/16.
  */
 public class TextUtils {

@@ -1,8 +1,8 @@
-package com.maimemo;
+package com.maimemo.text;
 
 import org.junit.Test;
 
-import static com.maimemo.TextUtils.simpleToLower;
+import static com.maimemo.text.TextUtils.simpleToLower;
 import static org.junit.Assert.*;
 
 /**

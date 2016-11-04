@@ -1,4 +1,6 @@
-package com.maimemo;
+package com.maimemo.text;
+
+import java.util.Locale;
 
 /**
  * Created by TJT on 3/21/16.
@@ -15,11 +17,30 @@ public class SubCharSequence implements
 
     }
 
-    void update(CharSequence source, int start, int end) {
+    public SubCharSequence(CharSequence str) {
+        update(str);
+    }
+
+    public void update(CharSequence source, int start, int end) {
         if (start > end) {
-            throw new IllegalArgumentException(String.format("end %d can't less than start %d", end, start));
+            throw new IllegalArgumentException(String.format(Locale.ENGLISH, "end %d can't less than start %d", end, start));
         }
         this.source = source;
+        this.start = start;
+        this.end = end;
+        if (end > source.length()) {
+            throw new IndexOutOfBoundsException("fuck");
+        }
+    }
+
+    public void update(CharSequence str) {
+        update(str, 0, str.length());
+    }
+
+    public void update(int start, int end) {
+        if (start > end) {
+            throw new IllegalArgumentException(String.format(Locale.ENGLISH, "end %d can't less than start %d", end, start));
+        }
         this.start = start;
         this.end = end;
         if (end > source.length()) {
@@ -110,6 +131,6 @@ public class SubCharSequence implements
     }
 
     public CharSequence subSequence(int start, int end) {
-        throw new IllegalAccessError();
+        return source.subSequence(this.start + start, this.start + end);
     }
 }
